@@ -23,7 +23,7 @@ class GenerateLanguageFile extends Command
      */
     protected $description = 'Command description';
 
-    const DEFAUT_DIRECTORY = 'resources/lang/';
+    const DEFAUT_DIRECTORY = 'lang/';
 
     protected $directoryPath;
 
@@ -44,23 +44,27 @@ class GenerateLanguageFile extends Command
      */
     public function handle()
     {
-        $locale = $this->argument('locale') ?? null;
-        $this->setDirectory();
+        try {
+            $locale = $this->argument('locale') ?? null;
+            $this->setDirectory();
 
-        $select = [
-            'languages.locale as language_locale',
-            'm.key',
-            'm.content',
-        ];
-        $where = is_null($locale) ? [] : [['languages.locale', '=', $locale]];
+            $select = [
+                'languages.locale as language_locale',
+                'm.key',
+                'm.content',
+            ];
+            $where = is_null($locale) ? [] : [['languages.locale', '=', $locale]];
 
-        $data = $this->groupLanguageDataByAlias($where, $select);
-        $this->generateMessageFile($data);
+            $data = $this->groupLanguageDataByAlias($where, $select);
+            $this->generateMessageFile($data);
+        } catch (\Exception $e) {
+            report($e);
+        }
     }
 
     public function setDirectory()
     {
-        $this->directoryPath = $this->argument('directoryPath') ?? self::DEFAUT_DIRECTORY;
+        $this->directoryPath = $this->argument('directoryPath') ?? resource_path(self::DEFAUT_DIRECTORY);
     }
 
     public function getDirectory()

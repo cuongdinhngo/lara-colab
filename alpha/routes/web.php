@@ -15,4 +15,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/lang', 'Language\LanguageService@getLanguageMessages');
+Route::get('/lang/{locale}', 'Language\LanguageController@generate');
+
+Route::get('/lang/{locale}', 'Language\LanguageController@generate');
