@@ -1,0 +1,24 @@
+version: '3'
+services:
+  #Nginx
+  nginx_server:
+    container_name: alpha_server
+    build: ./nginx_server
+    volumes:
+      - ../alpha:/var/www/project
+    ports:
+      - "8000:80"
+    tty: true
+  #MYSQL
+  db_mysql:
+    container_name: alpha_db
+    build: ./mysql
+    tty: true
+    ports:
+      - "43306:3306"
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root@secret123
+
