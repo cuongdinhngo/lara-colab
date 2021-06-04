@@ -17,4 +17,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/lang/{locale}', 'Language\LanguageController@generate');
 
-Route::get('/lang/{locale}', 'Language\LanguageController@generate');
+Route::put('/put-cache', 'Language\LanguageController@putCache');
+
+Route::group(['middleware' => ['locale']], function () {
+    Route::get('/get-cache/{key}', 'Language\LanguageController@getCache');
+});
+
