@@ -71,3 +71,12 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script type="text/javascript">
+    User.init();
+    User.rememberMe();
+    Common.getName();
+    console.log(User.name);
+</script>
+@endsection
