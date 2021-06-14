@@ -77,7 +77,7 @@ class SendOtp extends Notification
     }
 
     /**
-     * Get the Nexmo / SMS representation of the notification.
+     * Get the Twilio / SMS representation of the notification.
      *
      * @param  mixed  $notifiable
      *
@@ -86,12 +86,12 @@ class SendOtp extends Notification
     public function toTwilio($notifiable)
     {
         return [
-            'to' => "+84392806180",
+            'to' => "+84xxxxxxxxxx",
             'body' => 'OTP AUTH is '.$this->otp
         ];
         // return (new TwilioMessage)
-        //             ->to("+84392806180")
-        //             ->from("+12393091956")
+        //             ->to("+8439xxxxxxx")
+        //             ->from("+xxxxxxxxxx")
         //             ->body('OTP AUTH is '.$this->otp);
     }
 

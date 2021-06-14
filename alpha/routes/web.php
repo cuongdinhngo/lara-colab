@@ -29,6 +29,11 @@ Route::get("/notify", function(){
 
 Route::get("/check-otp/{otp}", function(){
     dump(request()->otp);
-    // return App\Models\User::find(1)->checkOtp(request()->otp);
+    // return auth()->user->checkOtp(request()->otp);
+    return App\Models\User::find(1)->checkOtp(request()->otp);
+});
+
+Route::get("/check-otp/{otp}", function(){
+    dump(request()->otp);
     return App\Models\User::authByOtp(request()->otp, '84905279285');
 });
