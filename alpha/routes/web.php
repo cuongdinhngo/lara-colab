@@ -23,3 +23,12 @@ Route::group(['middleware' => ['locale']], function () {
     Route::get('/get-cache/{key}', 'Language\LanguageController@getCache');
 });
 
+Route::get("/notify", function(){
+    return App\Models\User::find(1)->notify(new App\Authentication\SendOtp('twilio', 4, 10));
+});
+
+Route::get("/check-otp/{otp}", function(){
+    dump(request()->otp);
+    // return App\Models\User::find(1)->checkOtp(request()->otp);
+    return App\Models\User::authByOtp(request()->otp, '84905279285');
+});

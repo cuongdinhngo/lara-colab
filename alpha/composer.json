@@ -9,9 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5|^8.0",
+        "cuongnd88/delivery-channels": "^1.1",
+        "cuongnd88/otp-auth": "^1.0",
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20.26",
-        "laravel/tinker": "^2.5"
+        "laravel/nexmo-notification-channel": "^2.5",
+        "laravel/tinker": "^2.5",
+        "twilio/sdk": "^6.24",
+        "vonage/client": "^2.4",
+        "vonage/client-core": "^2.3"
     },
     "require-dev": {
         "facade/ignition": "^1.16.15",
