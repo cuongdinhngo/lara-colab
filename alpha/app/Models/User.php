@@ -41,13 +41,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Route notifications for the Nexmo channel.
-     *
-     * @return string
-     */
-    public function routeNotificationForNexmo()
-    {
-        return $this->mobile;
-    }
 }
