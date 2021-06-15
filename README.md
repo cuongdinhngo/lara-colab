@@ -37,7 +37,6 @@ Laravel ships with a handful of notification channels, but you may want to more 
 
 `routes/web.php`
 
-```
 ```php
 //Generate OTP
 Route::get("/notify", function(){
