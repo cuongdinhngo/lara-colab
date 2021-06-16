@@ -37,3 +37,8 @@ Route::get("/check-otp/{otp}", function(){
     dump(request()->otp);
     return App\Models\User::authByOtp(request()->otp, '84905279285');
 });
+
+Route::get("/bot", function () {
+    // detect user-agents of  crawlers and block via .htaccess
+    dd($_SERVER);
+});

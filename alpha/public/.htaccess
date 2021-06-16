@@ -5,6 +5,11 @@
 
     RewriteEngine On
 
+    RewriteCond %{HTTP_USER_AGENT} ^.*(petalbot|Petalbot).*$ [NC]
+    RewriteRule ^.*$ 403.html [L]
+    #Redirect to default Forbidden
+    #RewriteRule ^.*$ - [F,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

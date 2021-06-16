@@ -1,5 +1,14 @@
 version: '3'
 services:
+  #Apache
+  apache_server:
+    container_name: alpha_apache
+    build: ./apache_server
+    volumes:
+      - ../alpha:/var/www/project
+    ports:
+      - "8001:80"
+    tty: true
   #Nginx
   nginx_server:
     container_name: alpha_server
