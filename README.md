@@ -64,3 +64,14 @@ Please look at [SentOTP class](https://github.com/cuongnd88/lara-colab/blob/mast
 ```
 
 You read more detail of [delivery-channels package](https://github.com/cuongnd88/delivery-channels)
+
+## Auto-generated Repository Pattern
+
+The `lara-repository` package assists to automatically generate the Interface, Repository, Model and Controller files in saving your time and supporting to focus on implementing the logic. `Especially, you do not need binding the interface and repository class in Service provider class`
+
+```php
+php artisan make:repository --interface=Staff/StaffInterface --repository=Staff/StaffRepository --model=Models/Staff --controller=Staff/StaffController@resource
+
+```
+
+You read more detail of [lara-repository package](https://github.com/cuongnd88/lara-repository)
