@@ -6,8 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-// use Twilio\Rest\Client as TwilioClient;
-// use App\Channels\TwilioChannel;
 use Cuongnd88\DeliveryChannel\Messages\TwilioMessage;
 
 class SendOtp extends Notification
@@ -85,14 +83,14 @@ class SendOtp extends Notification
      */
     public function toTwilio($notifiable)
     {
-        return [
-            'to' => "+84xxxxxxxxxx",
-            'body' => 'OTP AUTH is '.$this->otp
-        ];
-        // return (new TwilioMessage)
-        //             ->to("+8439xxxxxxx")
-        //             ->from("+xxxxxxxxxx")
-        //             ->body('OTP AUTH is '.$this->otp);
+        // return [
+        //     'to' => "+84xxxxxxxxxx",
+        //     'body' => 'OTP AUTH is '.$this->otp
+        // ];
+        return (new TwilioMessage)
+                    ->to("+8439xxxxxxx")
+                    ->from("+xxxxxxxxxx")
+                    ->body('OTP AUTH is '.$this->otp);
     }
 
     /**

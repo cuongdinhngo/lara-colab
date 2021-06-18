@@ -167,6 +167,7 @@ return [
          */
         Cuongnd88\OtpAuth\OtpAuthServiceProvider::class,
         Cuongnd88\DeliveryChannel\DeliveryChannelServiceProvider::class,
+        Cuongnd88\LaraRepo\LaraRepoServiceProvider::class,
 
         /*
          * Application Service Providers...

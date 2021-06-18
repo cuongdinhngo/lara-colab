@@ -42,3 +42,5 @@ Route::get("/bot", function () {
     // detect user-agents of  crawlers and block via .htaccess
     dd($_SERVER);
 });
+
+Route::get('/test', 'Language\LanguageController@test');

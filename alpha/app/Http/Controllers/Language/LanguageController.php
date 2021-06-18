@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 use Artisan;
 use Cache;
 use App\Http\Controllers\Language\LanguageService;
+use App\Repositories\Language\LanguageInterface;
 
 class LanguageController extends Controller
 {
+    protected $langRepo;
+
+    public function __construct(LanguageInterface $langRepo)
+    {
+        $this->langRepo = $langRepo;        
+    }
+
+    public function test()
+    {
+        dd($this->langRepo->getAll());
+    }
+
     public function generate(Request $request)
     {
         Artisan::call('generate:lang', [
