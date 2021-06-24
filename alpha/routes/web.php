@@ -108,7 +108,5 @@ Route::get('/test', 'Language\LanguageController@test');
 // });
 
 Route::get('/jpostal', function(){
-    dump(jpostal_code('001-0926'));
-    dump(jlang('Add Team Member'));
     return view('user.jpostal');
 });
