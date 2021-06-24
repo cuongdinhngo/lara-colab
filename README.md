@@ -1,3 +1,37 @@
+## Installation
+1- After clonned, you go to `lara-docker` directory to start docker
+
+```php
+docker-compose up -d
+```
+
+2- Check docker containers
+
+```php
+docker ps
+```
+
+```php
+λ docker ps
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                                NAMES
+d254f8745bac        lara-docker_apache_server   "/bin/sh -c 'tail -f…"   8 days ago          Up 8 minutes        0.0.0.0:8001->80/tcp                 alpha_apache
+0f1cd76a8cab        lara-docker_db_mysql        "docker-entrypoint.s…"   10 days ago         Up 8 minutes        33060/tcp, 0.0.0.0:43306->3306/tcp   alpha_db
+6d7d8010eece        lara-docker_nginx_server    "/bin/sh -c 'service…"   10 days ago         Up 8 minutes        0.0.0.0:8000->80/tcp                 alpha_server
+```
+
+3- Generate app key & Composer install
+
+```php
+docker exec alpha_server cp .env.example .env
+docker exec alpha_server php artisan key:generate
+docker exec alpha_server composer install
+```
+
+4- Open web browser and start the application
+
+`http://localhost:8000/`
+
+
 ## Multi Languges
 
 The multi languages is stored in DB that user is enable to edit the content.
