@@ -1,4 +1,4 @@
-JPortal = function() {
+JPostal = function() {
 
     let url = '/js/jpostal/data/' ;
     let cache = {};
@@ -135,13 +135,68 @@ JPortal = function() {
     }
 
     /**
+     * Get HTML tag
+     *
+     * @param {*} tag
+     *
+     * @returns
+     */
+    function getHtmlTag(tag)
+    {
+        if (tag.includes('#')) {
+            let id = tag.slice(1);
+            return document.getElementById(id);
+        }
+        if (tag.includes('.')) {
+            let className = tag.slice(1);
+            let elements = document.getElementsByClassName(className);
+            if (elements.length > 0) {
+                return elements[0];
+            }
+        }
+    }
+
+    /**
      * Get prefectures data
      */
     function getPrefectures()
     {
         fetch(url + "prefectures.json")
         .then(response => response.json())
-        .then(data => prefectures = data);
+        .then(data => {
+            prefectures = data;
+        });
+    }
+
+    /**
+     * Inner Prefectures html
+     *
+     * @param {*} callback
+     */
+    function innerPrefecturesHtml(callback)
+    {
+        fetch(url + "prefectures.json")
+        .then(response => response.json())
+        .then(data => {
+            callback(data);
+        });
+
+    }
+
+    /**
+     * Inner City html by Pref
+     *
+     * @param {*} prefTag
+     * @param {*} callback
+     */
+    function innerCityHtmlByPref(prefTag, callback)
+    {
+        let prefValue = getHtmlTag(prefTag).value;
+        fetch(url + "city-" + prefValue + ".json")
+        .then(response => response.json())
+        .then(data => {
+            callback(data);
+        });
     }
 
     return {
@@ -149,6 +204,7 @@ JPortal = function() {
             getPrefectures();
         },
         capture: capture,
-        prefectures: prefectures,
+        innerPrefecturesHtml: innerPrefecturesHtml,
+        innerCityHtmlByPref: innerCityHtmlByPref,
     }
 }();
