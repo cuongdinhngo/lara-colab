@@ -110,3 +110,11 @@ Route::get('/test', 'Language\LanguageController@test');
 Route::get('/jpostal', function(){
     return view('user.jpostal');
 });
+
+Route::get('/csv', function(){
+    return view('user.csv');
+})->name('csv-form');
+
+Route::post('/csv', 'User\UserController@postCSV')->name('csv-post');
+
+Route::get('/download-csv', 'User\UserController@downloadCSV')->name('csv-download');
