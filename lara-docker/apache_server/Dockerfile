@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 MAINTAINER cuong.ngo
 
@@ -14,48 +14,34 @@ ENV LC_CTYPE=UTF-8
 ENV LANG=en_US.UTF-8
 ENV TERM xterm
 
-
-# Clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install "software-properties-common" (for the "add-apt-repository")
-RUN apt-get update && apt-get install -y \
-    software-properties-common libmcrypt-dev php-pear dos2unix
-
-# Add the "PHP 7" ppa
-RUN add-apt-repository -y \
-    ppa:ondrej/php
-
-# Clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Install PHP-CLI 7, some PHP extentions and some useful Tools with APT
 RUN apt-get update && apt-get install -y --allow-remove-essential \
-        php7.4-fpm \ 
-        php7.4-cli \
-        php7.4-dev \
-        php7.4-phpdbg \
-        php7.4-common \
-        php7.4-curl \
-        php7.4-json \
-        php7.4-xml \
-        php7.4-mbstring \
-        php7.4-mysql \
-        php7.4-pgsql \
-        php7.4-sqlite \
-        php7.4-sqlite3 \
-        php7.4-zip \
-        php7.4-imagick \
-        sqlite3 \
-        libsqlite3-dev \
+        php \
+        php-fpm \
+        php-cli \
+        php-dev \
+        php-phpdbg \
+        php-common \
+        php-curl \
+        php-json \
+        php-xml \
+        php-mbstring \
+        php-mysql \
+        php-pgsql \
+        php-zip \
+        php-imagick \
         git \
         curl \
         vim \
         nano \
-        nodejs \
         php7.4-gd \
         npm \
+        telnetd \
+        wget \
     && apt-get clean
+
 
 # Install composer
 RUN curl -s http://getcomposer.org/installer | php \
@@ -78,6 +64,9 @@ RUN a2ensite domain.conf
 RUN a2dissite 000-default.conf
 RUN a2enmod rewrite
 
+
+# Clean up
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN mkdir -p /var/www/project
 WORKDIR /var/www/project

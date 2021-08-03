@@ -1,14 +1,14 @@
 version: '3'
 services:
   #Apache
-  apache_server:
-    container_name: alpha_apache
-    build: ./apache_server
-    volumes:
-      - ../alpha:/var/www/project
-    ports:
-      - "8001:80"
-    tty: true
+  # apache_server:
+  #   container_name: alpha_apache
+  #   build: ./apache_server
+  #   volumes:
+  #     - ../alpha:/var/www/project
+  #   ports:
+  #     - "8001:80"
+  #   tty: true
   #Nginx
   nginx_server:
     container_name: alpha_server
@@ -27,7 +27,6 @@ services:
       - "43306:3306"
     environment:
       MYSQL_DATABASE: app
-      MYSQL_USER: root
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: root@secret123
 
