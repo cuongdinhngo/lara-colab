@@ -1,0 +1,1 @@
+<a href="user/{{$id}}">Edit</a> | <a href="user/{{$id}}/remove">Remove</a>

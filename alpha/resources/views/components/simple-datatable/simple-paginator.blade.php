@@ -1,0 +1,1 @@
+{{ $data->appends($appends)->links() }}

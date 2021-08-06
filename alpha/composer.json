@@ -12,6 +12,7 @@
         "cuongnd88/delivery-channels": "^1.1",
         "cuongnd88/jutility": "^1.3",
         "cuongnd88/lara-repository": "^1.1",
+        "cuongnd88/lara-simple-datatable": "^1.2",
         "cuongnd88/otp-auth": "^1.0",
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20.26",

@@ -7,6 +7,7 @@ use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 use Cuongnd88\Jutility\Facades\CSV;
 use App\Models\User;
+use SimpleDatatable;
 
 class UserController extends Controller
 {
@@ -35,5 +36,22 @@ class UserController extends Controller
         $data = User::all()->toArray();
         $header = ['ID','Fullname','Email','Mobile number', 'Email verified data time', 'Created date time', 'Updated date time'];
         CSV::save('user-data', $data, $header);
+    }
+
+    public function index(Request $request)
+    {
+        $users = SimpleDatatable::buildQuery(User::query())
+                    ->setPerPage(10)
+                    ->addIncrement(function($value) {
+                        return "#{$value["increment"]}";
+                    })
+                    ->editColumn('id', function($value) {
+                        return "[{$value["id"]}]";
+                    })
+                    ->editColumn('name', 'user.partials.name')
+                    ->addColumn('action', 'user.partials.action')
+                    ->make();
+
+        return view('user.index', ['users' => $users]);
     }
 }

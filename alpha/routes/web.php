@@ -118,3 +118,7 @@ Route::get('/csv', function(){
 Route::post('/csv', 'User\UserController@postCSV')->name('csv-post');
 
 Route::get('/download-csv', 'User\UserController@downloadCSV')->name('csv-download');
+
+Route::group(['namespace' => 'User', 'prefix' => 'users'], function(){
+    Route::get('/', 'UserController@index');
+});
