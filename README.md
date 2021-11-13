@@ -23,8 +23,9 @@ d254f8745bac        lara-docker_apache_server   "/bin/sh -c 'tail -f…"   8 day
 
 ```php
 docker exec alpha_server cp .env.example .env
-docker exec alpha_server php artisan key:generate
+docker exec alpha_server cp auth.json.example auth.json
 docker exec alpha_server composer install
+docker exec alpha_server php artisan key:generate
 ```
 
 4- Open web browser and start the application
